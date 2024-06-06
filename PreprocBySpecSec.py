@@ -5,17 +5,19 @@ from pathlib import Path
 import argparse
 
 # Divisione degli articoli delle Special Section in base alla Special Section di appartenenza
+# Division of articles in the Special Sections based on the Special Section they belong to
 def titles_partition(spec_sec_file):
     titles = []
 
     csv_file = pd.read_csv(spec_sec_file, sep='\t')
     grouped_spec_sec = csv_file.groupby('final_track')
     for _, group in grouped_spec_sec:
-        titles.append([re.sub('[^a-zA-Z]', '', title.strip().lower()) for title in group['title'].values.tolist()])
+        titles.append([re.sub('[^a-zA-Z]', '', title.strip().lower()) for title in group['Title'].values.tolist()])
 
     return titles
 
 # Divisione degli articoli preprocessati con slrkit in base alla Special Section di appartenenza
+# Division of articles preprocessed with slrkit based on the Special Section they belong to
 def preproc_partition(titles, preproc_file):
     preproc_titles_partition = []
 
@@ -34,6 +36,7 @@ def preproc_partition(titles, preproc_file):
     return preproc_titles_partition
 
 # Creazione di sottocartelle per ogni Special Section e divisione degli articoli preprocessati nelle sottocartelle
+# Creation of subfolders for each Special Section and division of preprocessed articles into subfolders
 def create_subdir(preproc_titles):
 
     keys = preproc_titles[0][0].keys()
