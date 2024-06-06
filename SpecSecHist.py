@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Lettura del file csv contenente gli articoli postprocessati e conteggio del numero di articoli
+# Reading the csv file containing the postprocessed articles and counting the number of articles
 def read_csv(path):
 
     file_path = str.format(*glob.glob(os.path.join(path, path.split('/')[-1] + '_postproc.csv')))
@@ -16,6 +17,7 @@ def read_csv(path):
     return path.split('/')[-1], n_row
 
 # Creazione di un istogramma ordinato in senso decrescente in base al numero di articoli
+# Creation of a histogram sorted in descending order based on the number of articles
 def create_hist(x, y, file_name):
 
     ordered_values = np.sort(y)[::-1]

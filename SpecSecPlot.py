@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Lettura del file csv con i valori di coerenza
+# Reading the csv file with consistency values
 def read_csv(file):
 
     values_by_row = []
@@ -24,6 +25,7 @@ def read_csv(file):
         return list(zip(*values_by_row))
 
 # Calcolo del valore medio di coerenza di una Special Section o Special Section fake
+# Calculation of the average coherence value of a Special Section or Special Section fake
 def mean_calc(values):
 
     mean = []
@@ -33,7 +35,7 @@ def mean_calc(values):
 
     return mean
 
-# Creazione del grafico
+# Creating the graph
 def create_plot(x, y):
 
     graph_name = ['Special Section', 'Special Section Fake']

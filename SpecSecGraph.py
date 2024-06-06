@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt # for plotting the results
 import networkx as nx
 
 # Lettura del file csv con gli articoli postprocessati
+# Reading the csv file with postprocessed articles
 def read_csv(path):
 
     with open(str.format(*glob.glob(os.path.join(path, path.split('/')[-1] + '_postproc.csv'))), 'r', encoding='utf-8') as input_file:
@@ -19,6 +20,7 @@ def read_csv(path):
     return doc
 
 # Calcolo dei lati e del loro peso (numero di parole in comune tra gli abstract_filtered di due articoli)
+# Calculation of edges and their weight (number of words in common between the abstract_filtered of two articles)
 def edges_calc(doc):
     graph_edges = []
     edges_weights = []
@@ -32,6 +34,7 @@ def edges_calc(doc):
     return graph_edges, edges_weights
 
 # Inserimento dei nodi all'interno del grafo
+# Insertion of nodes within the graph
 def nodes_calc(doc):
     nodes = []
 
@@ -41,6 +44,7 @@ def nodes_calc(doc):
     return nodes
 
 # Creazione del grafo
+# Creation of the graph
 def create_graph(nodes, edges, weights, path):
     g = nx.Graph()
     g.add_nodes_from(nodes)

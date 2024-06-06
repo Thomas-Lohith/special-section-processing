@@ -6,6 +6,7 @@ import argparse
 import re
 
 # Lettura del file csv contenente gli articoli postprocessati
+# Reading the csv file containing the postprocessed articles
 def read_csv(file):
 
     papers = []
@@ -19,6 +20,7 @@ def read_csv(file):
     return papers
 
 # Creazione dei file csv di output
+# Creation of output csv files
 def create_csv(file_name, th, *args):
 
     keys = ['id', 'papers']
@@ -34,6 +36,7 @@ def create_csv(file_name, th, *args):
         writer.writeheader()
 
 # Scrittura dei file csv di output
+# Writing output csv files
 def write_csv(file_name, id, coherence, n_papers, *args):
     with open(file_name, 'a', newline='', encoding='utf-8') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter='\t')
@@ -48,6 +51,7 @@ def write_csv(file_name, id, coherence, n_papers, *args):
         csv_writer.writerow(csv_row)
 
 # Calcolo del numero di lati del grafo una Special Section o Special Section fake in base alla soglia
+# Calculation of the number of edges of the graph a Special Section or Special Section fake based on the threshold
 def edges_calc(doc, th):
     n_edges = 0
 
@@ -58,6 +62,7 @@ def edges_calc(doc, th):
     return n_edges
 
 # Calcolo della coerenza tra gli articoli di una stessa Special Section o Special Section fake
+# Calculation of coherence between articles of the same Special Section or Special Section fake
 def metric_calc(path, th):
     coherence = []
 
@@ -80,6 +85,7 @@ def metric_calc(path, th):
     return coherence, len(doc)
 
 # Calcolo del valore sparsity per gli articoli di una Special Section fake
+# Calculation of the sparsity value for the articles of a fake Special Section
 def sparsity_calc(papers_real, fake_spec_sec):
 
     num_spec_sec = []
@@ -100,6 +106,7 @@ def sparsity_calc(papers_real, fake_spec_sec):
     return sparsity
 
 # Estrazione del titolo degli articoli delle Special Section
+# Extraction of the title of the articles in the Special Sections
 def extract_titles(spec_sec):
     titles = []
 

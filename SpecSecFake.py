@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 
 # Lettura del csv contenente gli articoli postprocessati di tutte le Special Section
+# Reading of the csv containing the post-processed articles of all the Special Sections
 def read_csv(file):
 
     papers = []
@@ -20,6 +21,7 @@ def read_csv(file):
     return papers
 
 # Creazione csv Special Section fake
+# Creation of fake Special Section csv
 def csv_specsec_fake(papers, ind):
 
         keys = papers[0].keys()
@@ -39,6 +41,7 @@ def csv_specsec_fake(papers, ind):
             dict_writer.writerows(papers)
 
 # Creazione Special Section fake con articoli postprocessati presi in maniera casuale dalle Special Section
+# Creation of fake Special Sections with post-processed articles taken randomly from the Special Sections
 def create_fake(postproc_file, ind):
 
     random_papers = []
@@ -51,6 +54,7 @@ def create_fake(postproc_file, ind):
     csv_specsec_fake(random_papers, ind)
 
 # Creazione di Special Section fake con articoli postprocessati tutti provenienti da Special Section diverse
+# Creation of fake Special Sections with post-processed articles all coming from different Special Sections
 def create_all_different_fake(dir, ind):
 
     random_papers = []
