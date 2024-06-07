@@ -20,7 +20,7 @@ def read_csv(file):
     return doc
 
 # Calcolo dei lati e del loro peso (numero di parole in comune tra gli abstract_filtered di due articoli)
-# Calculation of sides and their weight (number of words in common between the abstract_filtered of two articles)
+# Calculation of edges and their weight (number of words in common between the abstract_filtered of two articles)
 def edges_calc(doc):
     graph_edges = []
     edges_weights = []
