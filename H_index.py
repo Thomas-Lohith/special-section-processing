@@ -47,14 +47,14 @@ def intersections(file):
         zero_list.append(0)
 
     h_dict = {a: b for a, b in zip(name_columns, zero_list)}
-
+    
     track_intersection_dict = {a: b for a, b in zip(track_pairs, intersection_without_zero)}
 
     for key in track_intersection_dict.keys():
 
         h_dict[key[0]] = h_dict[key[0]] + track_intersection_dict.get(key)
         h_dict[key[1]] = h_dict[key[1]] + track_intersection_dict.get(key)
-
+   
     return h_dict
 
 def h_index_expert(h_dict):
@@ -72,13 +72,25 @@ def h_index_expert(h_dict):
     h_idx = np.max(np.minimum(value_list, array))
 
     print(h_idx)
+    return h_idx, array, value_list
 
-    """ da rivedere
-    
-    plt.hist(value_list)
+def createImage(h_idx, array, value_list):
+
+    plt.hist(array, bins=45, weights=value_list, ec="black", fc="orange")
+
+    plt.plot(array,value_list, color="green", linestyle="solid")
+
+    plt.plot([0, h_idx], [h_idx, h_idx], color='b', linestyle='--')
+    plt.plot([h_idx, h_idx], [0, h_idx], color='b', linestyle='--')
+
+
+    plt.plot(h_idx, h_idx, color="red", marker="o")
+
+    plt.text(h_idx + 0.5, h_idx + 0.5, h_idx)
     plt.xlabel('Number of tracks')
+    plt.ylabel('Intersections')
     plt.savefig('h_index.png')
-    plt.clf() """
+    plt.clf() 
 
     return h_idx
 
@@ -91,7 +103,9 @@ def main():
     args = parser.parse_args()
 
     h_dict = intersections(args.file)
-    h_idx = h_index_expert(h_dict)
+    h_idx, array, value_list = h_index_expert(h_dict)
+
+    createImage(h_idx, array, value_list)
 
 if __name__ == '__main__':
     main()
