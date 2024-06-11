@@ -29,7 +29,7 @@ def edges_calc(doc):
     for paper1, paper2 in itertools.combinations(doc, 2):
         intersection = len(set(paper1['abstract_filtered'].lower().split()).intersection(set(paper2['abstract_filtered'].lower().split())))
         intersection_values.append(intersection)
-        if intersection > 35:
+        if intersection > 45:
             graph_edges.append((paper1['id'], paper2['id']))
             edges_weights.append(intersection)
 
