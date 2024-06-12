@@ -7,6 +7,7 @@ from cdlib import algorithms, viz
 from scipy.stats import norm
 import statistics
 import numpy as np
+
 def intersections(file):
 
     df = pd.read_csv(file, sep='\t')
@@ -52,10 +53,12 @@ def intersections(file):
 
     for key in track_intersection_dict.keys():
 
-        h_dict[key[0]] = h_dict[key[0]] + track_intersection_dict.get(key)
-        h_dict[key[1]] = h_dict[key[1]] + track_intersection_dict.get(key)
-   
-    return h_dict
+        h_dict[key[0]] = (h_dict[key[0]] + track_intersection_dict.get(key)) 
+        h_dict[key[1]] = (h_dict[key[1]] + track_intersection_dict.get(key)) 
+    
+    for key in h_dict.keys():
+        h_dict[key] = round(h_dict.get(key) /len(name_columns))
+    return h_dict 
 
 def h_index_expert(h_dict):
 
@@ -67,8 +70,9 @@ def h_index_expert(h_dict):
 
     # reverse sorting
     value_list = np.sort(value_list)[::-1]
+    
 
-    # intersection of citations and k
+    # intersection of citations and k (logic behind the hindex)
     h_idx = np.max(np.minimum(value_list, array))
 
     print(h_idx)

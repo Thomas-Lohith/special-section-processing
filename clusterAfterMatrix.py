@@ -37,7 +37,7 @@ def edges_calc(file):
 
         intersection_values.append(intersection)
 
-        if intersection > 6 + 1 * 5: #mean + 1 * sd
+        if intersection > 13 + 1 * 10: #mean + 1 * sd
             graph_edges.append((track1, track2))
             edges_weights.append(intersection)
 
